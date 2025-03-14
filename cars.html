@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarCityRocket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .gallery img {
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        #preview {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 200px;
+            display: none;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay-content {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            width: 50%;
+        }
+        .overlay img {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to CarCityRocket</h1>
+    <img id="preview" src="" alt="Preview">
+    <div class="gallery" id="gallery"></div>
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <img id="large-image" src="" alt="Car">
+            <p id="car-specs"></p>
+        </div>
+    </div>
+    
+    <script>
+        const cars = [];
+        for (let i = 1; i <= 40; i++) {
+            cars.push({
+                id: i,
+                image: `cars/small/car${i}.jpg`,
+                largeImage: `cars/large/car${i}.jpg`,
+                specs: `Specs for Car ${i}: Engine, Speed, Features...`
+            });
+        }
+
+        const gallery = document.getElementById("gallery");
+        const preview = document.getElementById("preview");
+        const overlay = document.getElementById("overlay");
+        const largeImage = document.getElementById("large-image");
+        const carSpecs = document.getElementById("car-specs");
+
+        cars.forEach(car => {
+            const img = document.createElement("img");
+            img.src = car.image;
+            img.addEventListener("mouseover", () => {
+                preview.src = car.image;
+                preview.style.display = "block";
+            });
+            img.addEventListener("mouseout", () => {
+                preview.style.display = "none";
+            });
+            img.addEventListener("click", () => {
+                largeImage.src = car.largeImage;
+                carSpecs.textContent = car.specs;
+                overlay.style.display = "flex";
+            });
+            gallery.appendChild(img);
+        });
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                overlay.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
