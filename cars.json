@@ -1,12 +1,12 @@
 [
     {
         "id": 1,
-        "image": "cars/small/car1.jpg",
+        "image": "cars/car1.jpg",
         "specs": "The McLaren F1 is one of the most iconic supercars of all time. It was introduced in 1992 and was considered revolutionary for its era, combining exceptional aerodynamics, lightweight construction, and a powerful 6.1L V12 BMW engine producing 627 horsepower. Its top speed reached 386.4 km/h, making it the fastest production car until 2005. A unique feature was its central driving position, with two additional passenger seats on either side. With only 106 units ever produced, the McLaren F1 remains one of the rarest and most sought-after cars in automotive history."
     },
     {
         "id": 2,
-        "image": "cars/small/car2.jpg",
+        "image": "cars/car2.jpg",
         "specs": "🚗 Model: BMW M3 aaaaaaaaaaa"
     }
 ]
