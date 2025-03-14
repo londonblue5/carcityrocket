@@ -69,39 +69,35 @@
     </div>
     
     <script>
-        const cars = [];
-        for (let i = 1; i <= 40; i++) {
-            cars.push({
-                id: i,
-                image: `cars/small/car${i}.jpg`,
-                largeImage: `cars/large/car${i}.jpg`,
-                specs: `Specs for Car ${i}: Engine, Speed, Features...`
-            });
-        }
+        fetch("cars.json")
+            .then(response => response.json())
+            .then(cars => {
+                const gallery = document.getElementById("gallery");
+                const preview = document.getElementById("preview");
+                const overlay = document.getElementById("overlay");
+                const largeImage = document.getElementById("large-image");
+                const carSpecs = document.getElementById("car-specs");
 
-        const gallery = document.getElementById("gallery");
-        const preview = document.getElementById("preview");
-        const overlay = document.getElementById("overlay");
-        const largeImage = document.getElementById("large-image");
-        const carSpecs = document.getElementById("car-specs");
-
-        cars.forEach(car => {
-            const img = document.createElement("img");
-            img.src = car.image;
-            img.addEventListener("mouseover", () => {
-                preview.src = car.image;
-                preview.style.display = "block";
-            });
-            img.addEventListener("mouseout", () => {
-                preview.style.display = "none";
-            });
-            img.addEventListener("click", () => {
-                largeImage.src = car.largeImage;
-                carSpecs.textContent = car.specs;
-                overlay.style.display = "flex";
-            });
-            gallery.appendChild(img);
-        });
+                cars.forEach(car => {
+                    const img = document.createElement("img");
+                    img.src = car.image;
+                    img.alt = `Image of ${car.specs}`;
+                    img.addEventListener("mouseover", () => {
+                        preview.src = car.image;
+                        preview.style.display = "block";
+                    });
+                    img.addEventListener("mouseout", () => {
+                        preview.style.display = "none";
+                    });
+                    img.addEventListener("click", () => {
+                        largeImage.src = car.largeImage;
+                        carSpecs.innerHTML = car.specs;
+                        overlay.style.display = "flex";
+                    });
+                    gallery.appendChild(img);
+                });
+            })
+            .catch(error => console.error("Error loading cars.json:", error));
 
         window.addEventListener("keydown", (e) => {
             if (e.key === "Escape") {
