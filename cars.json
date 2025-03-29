@@ -9,4 +9,9 @@
         "image": "cars/car2.avif",
         "specs": "BMW M3"
     }
+    {
+        "id": 3,
+        "image": "cars/car3.jpg",
+        "specs": "Porsche 911 GT3"
+    }
 ]
